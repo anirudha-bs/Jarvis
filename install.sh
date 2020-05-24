@@ -5,10 +5,11 @@ then
 echo "This script must be run as root."
 exit 1;
 fi
-echo "J.A.R.V.I.S loading ====>>"
+echo "<<=======J.A.R.V.I.S =======>>"
 echo "------------Installing dependecies------------"
 sudo apt-get install portaudio19-dev
-pip install -r requirements.txt
+sudo apt-get install libespeak1
+pip3 install -r requirements.txt
 if [ $? -eq 0 ]
 then
 echo "Dependencies installed successfully"
