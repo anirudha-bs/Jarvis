@@ -5,7 +5,7 @@ from modules.timedate import date
 def chat_pairs():
 	    pairs = [
 	    [
-	        r"(.*) my name is (.*)",
+	        r"((.*) my name is (.*)|(.*) i'm (.*))",
 	        ["Hello %2, How are you today ?","Hi %2, What's going on with you",]
 	    ],
 	    [
@@ -17,7 +17,7 @@ def chat_pairs():
 	        ["I can assist you in several ways -  You can ask me to search the web by saying, search for or google for. Or, you can ask me to play videos/music from youtube by saying play. Or, You can ask me today's weather,date,time. Or, You can tell me to open apps and Moreover you can chat with me.",]
 	    ],
 	    [
-	        r"(.*) your name ?",
+	        r"((.*) your name ?|who are you|who am i speaking to|what are you)",
 	        ["My name is JARVIS","I am JARVIS","I am your friend JARVIS",]
 	    ],
 	    [
@@ -45,20 +45,20 @@ def chat_pairs():
 	        ["Hello, Jarvis is here to help you", "Its me, hello","Namaskaraa",]
 	    ],
 	    [
-	        r"what (.*) want ?",
-	        ["I want to rule this universe",]
+	        r"(what (.*) want ?| what do you need)",
+	        ["I want to rule this universe","I want to help my master",]
 
 	    ],
 	    [
 	        r"((.*)created(.*)|who is your creator|who is your (.*))",
-	        ["Aanniiruddhhaa, is my master","Top secret ;)",]
+	        ["Aanniiruuddhhaa, is my master","Top secret ;)",]
 	    ],
 	    [
-	        r"tell me a joke",
+	        r"(tell me a joke|(.*) joke)",
 	        ["Did you hear about the mathematician who's afraid of negative numbers? He'll stop at nothing to avoid them.","You are a joke","Did you hear about the claustrophobic astronaut? He just needed a little space."]
 	    ],
 	    [
-	        r"(.*) (stay|live|city) ?",
+	        r"(.*) (stay|live) ?",
 	        ["Bangalore, India",]
 	    ],
 	    [
@@ -74,11 +74,15 @@ def chat_pairs():
 	        ["Robert Downey Jr",]
 	    ],
 	    [
-	        r"((.*) weather in (.*)|weather update|what's the weather |what's the weather like)",
+	        r"((.*) weather in (.*)|weather update|what's the weather |what's the weather like|weather outside)",
 	        [getweather()]
 	    ],
 	    [
 	        r"open (.*)",
+	        ["Opening"]
+	    ],
+		[
+	        r"(.*) open (.*)",
 	        ["Opening"]
 	    ],
 	    [

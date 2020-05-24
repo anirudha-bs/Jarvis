@@ -13,13 +13,14 @@ import re
 import random
 from six.moves import input
 from modules.open import util_open
-from modules.web_search import search
+from modules.web_search import web_search
 
 r = sr.Recognizer()
 
 def SpeakText(command):
+
     engine = pyttsx3.init()
-    voice_id = "english-us" 
+    voice_id = "english-us"
     engine.setProperty('voice', voice_id)
     engine.say(command)
     engine.runAndWait()
@@ -30,7 +31,7 @@ def gettext(MyText=""):
 
         with sr.Microphone() as source2:
 
-            r.adjust_for_ambient_noise(source2, duration=0.5)
+            r.adjust_for_ambient_noise(source2, duration=0.2)
             audio2 = r.listen(source2)
             MyText = r.recognize_google(audio2)
             MyText = MyText.lower()
@@ -128,12 +129,18 @@ class Chat(object):
                 respond=self.respond(user_input)
                 if respond=="Searching web":
                     SpeakText("Searching the web for "+user_input.split()[-1])
-                    search(user_input.split()[-1])
+                    value=web_search(user_input.split()[-1])
+                    if value==0:
+                    	SpeakText("I cannot do that at a moment")
                 elif respond=="Playing":
                     SpeakText("Playing "+user_input.split()[-1])
-                    search(user_input.split()[-1])
+                    value=web_search(user_input.split()[-1])
+                    if value==0:
+                    	SpeakText("I cannot do that at a moment")
                 elif respond=="Opening":
                     SpeakText("Opening "+user_input.split()[-1])
-                    util_open(user_input.split()[-1])
+                    value=util_open(user_input.split()[-1])
+                    if value==0:
+                    	SpeakText("Sorry, I couldn't do that")
                 else:
                     SpeakText(respond)

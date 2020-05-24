@@ -1,12 +1,21 @@
 import os
+
 def util_open(name):
+
     if name=="settings":
         os.system("gnome-control-center")
-    if name=="chrome":
+        return 1
+    elif name=="chrome":
         os.system("google-chrome")
-    if name=="firefox":
+        return 1
+    elif name=="firefox":
         os.system("firefox")
-    if name=="file manager" or name=="files":
+        return 1
+    elif name=="file manager" or name=="files":
         os.system("nautilus")
-    if name=="terminal":
+        return 1
+    elif name=="terminal":
         os.system("gnome-terminal")
+        return 1
+    else:
+    	return 0
