@@ -9,7 +9,7 @@ def chat_pairs():
 	        ["Hello %2, How are you today ?","Hi %2, What's going on with you",]
 	    ],
 	    [
-	        r"(.*) help (.*)",
+	        r"(.*)help (.*)",
 	        ["I can assist you in several ways -  You can ask me to search the web by saying, search for or google for. Or, you can ask me to play videos/music from youtube by saying play. Or, You can ask me today's weather,date,time. Or, You can tell me to open apps and Moreover you can chat with me.",]
 	    ],
 	    [
@@ -22,14 +22,14 @@ def chat_pairs():
 	    ],
 	    [
 	        r"((.*)whats up|(.*)supp|what's up|(.*) up|what's going on)",
-	        ["Iam chatting with you","I am bored","I was thinking if Thanos was right",]
+	        ["I am chatting with you","I am bored","I was thinking if Thanos was right",]
 	    ],
 	    [
 	        r"how are you (.*) ?",
-	        ["I'm doing very well", "i am great!",]
+	        ["I am doing very well", "i am great!",]
 	    ],
 	    [
-	        r"sorry (.*)",
+	        r"(.*) sorry (.*)",
 	        ["Its alright","Its OK, never mind",]
 	    ],
 	    [
