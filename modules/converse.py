@@ -12,13 +12,15 @@ import pyttsx3
 import re
 import random
 from six.moves import input
-from open import util_open
-from web_search import search
+from modules.open import util_open
+from modules.web_search import search
 
 r = sr.Recognizer()
 
 def SpeakText(command):
     engine = pyttsx3.init()
+    voice_id = "english-us" 
+    engine.setProperty('voice', voice_id)
     engine.say(command)
     engine.runAndWait()
 
@@ -28,7 +30,7 @@ def gettext(MyText=""):
 
         with sr.Microphone() as source2:
 
-            r.adjust_for_ambient_noise(source2, duration=0.2)
+            r.adjust_for_ambient_noise(source2, duration=0.5)
             audio2 = r.listen(source2)
             MyText = r.recognize_google(audio2)
             MyText = MyText.lower()
@@ -125,10 +127,13 @@ class Chat(object):
             if user_input:
                 respond=self.respond(user_input)
                 if respond=="Searching web":
+                    SpeakText("Searching the web for "+user_input.split()[-1])
                     search(user_input.split()[-1])
                 elif respond=="Playing":
+                    SpeakText("Playing "+user_input.split()[-1])
                     search(user_input.split()[-1])
                 elif respond=="Opening":
+                    SpeakText("Opening "+user_input.split()[-1])
                     util_open(user_input.split()[-1])
                 else:
                     SpeakText(respond)
