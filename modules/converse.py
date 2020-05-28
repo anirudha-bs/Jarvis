@@ -13,7 +13,8 @@ import re
 import random
 from six.moves import input
 from modules.open import util_open
-from modules.web_search import web_search
+from modules.web_search import google_search
+from modules.web_search import play
 
 r = sr.Recognizer()
 
@@ -28,12 +29,12 @@ def SpeakText(command):
 def gettext(MyText=""):
 
     try:
-
-        with sr.Microphone() as source2:
-
-            r.adjust_for_ambient_noise(source2, duration=0.2)
-            audio2 = r.listen(source2)
-            MyText = r.recognize_google(audio2)
+        with sr.Microphone() as source:
+            r.adjust_for_ambient_noise(source)
+            audio = r.listen(source)
+            print("Listening")
+            MyText = r.recognize_google(audio)
+            print("TTS converted")
             MyText = MyText.lower()
 
     except sr.RequestError as e:
@@ -43,6 +44,13 @@ def gettext(MyText=""):
         print("unknown error occured")
 
     return MyText
+
+
+def get_regex(words):
+    text=""
+    for i in words:
+        text+=str(i)+" "
+    return text
 
 
 reflections = {
@@ -128,19 +136,26 @@ class Chat(object):
             if user_input:
                 respond=self.respond(user_input)
                 if respond=="Searching web":
-                    SpeakText("Searching the web for "+user_input.split()[-1])
-                    value=web_search(user_input.split()[-1])
+                    key = get_regex(user_input.split()[2:len(user_input.split())])
+                    SpeakText("Searching the web for "+ key)
+                    value=google_search(key)
+                    print("Convo complete")
                     if value==0:
                     	SpeakText("I cannot do that at a moment")
                 elif respond=="Playing":
-                    SpeakText("Playing "+user_input.split()[-1])
-                    value=web_search(user_input.split()[-1])
+                    key = get_regex(user_input.split()[1:len(user_input.split())])
+                    SpeakText("Playing "+ key)
+                    value=play(key)
+                    print("Convo complete")
                     if value==0:
                     	SpeakText("I cannot do that at a moment")
                 elif respond=="Opening":
-                    SpeakText("Opening "+user_input.split()[-1])
+                    key = get_regex(user_input.split()[1:len(user_input.split())])
+                    SpeakText("Opening "+ key)
                     value=util_open(user_input.split()[-1])
+                    print("Convo complete")
                     if value==0:
                     	SpeakText("Sorry, I couldn't do that")
                 else:
                     SpeakText(respond)
+                    print("Convo complete")

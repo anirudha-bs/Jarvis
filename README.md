@@ -1,5 +1,9 @@
 # Jarvis
 
+![alt text](https://github.com/anirudha-bs/Jarvis/blob/master/logo.jpeg?raw=true)
+
+
+
 This is jarvis like in Iron man movie, your personal assistant.
 It can do several things like open system utilities, search the web, play videos/songs from youtube, get you weather updates and also chat with you.
 
